@@ -110,7 +110,6 @@ extension ViewController: UITableViewDataSource {
         }
         cell.index = indexPath.row
         cell.schoolsData = schoolsData[indexPath.row]
-        cell.verticalLineView.isHidden = schoolsData[indexPath.row].isExpanded ? false : true
         cell.helperDelegate = self
         return cell
     }

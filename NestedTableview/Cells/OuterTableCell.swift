@@ -70,6 +70,9 @@ extension OuterTableCell: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.studentsData = schoolsData?.studentsData[indexPath.row]
+        if let count = schoolsData?.studentsData.count {
+            cell.verticalBottomLineView.isHidden = count - 1 == indexPath.row ? true : false
+        }
         return cell
     }
     
