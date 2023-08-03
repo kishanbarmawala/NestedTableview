@@ -45,16 +45,18 @@ class OuterTableCell: UITableViewCell {
     }
     
     @objc private func handleActon() {
-        if let isExpanded = schoolsData?.isExpanded {
-            innerTableView.isHidden = !isExpanded
-            paddingView.isHidden = isExpanded
-            verticalLineView.isHidden = isExpanded
-            schoolsData?.isExpanded = !isExpanded
-            UIView.animate(withDuration: 0.3) {
-                self.stackView.setNeedsLayout()
-                self.helperDelegate?.heightChanged(index: self.index, value: !isExpanded)
-            }
+        guard let isExpanded = schoolsData?.isExpanded else {
+            print("isExpanded variable not initialized")
+            return
         }
+        innerTableView.isHidden = isExpanded
+        paddingView.isHidden = isExpanded
+        verticalLineView.isHidden = isExpanded
+        UIView.animate(withDuration: 0.3) {
+            self.stackView.setNeedsLayout()
+            self.helperDelegate?.heightChanged(index: self.index, value: !isExpanded)
+        }
+        schoolsData?.isExpanded = !isExpanded
     }
     
 }
